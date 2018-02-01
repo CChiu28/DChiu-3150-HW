@@ -19,3 +19,25 @@ Side1: 2.8284271247461903
 Side2: 2.0
 Side3: 4.47213595499958
 This is a real triangle
+-------------------
+Enter coordinates for point 1 - (ie. x,y): 4,5
+Enter coordinates for point 2 - (ie. x,y): 2,3
+Enter coordinates for point 3 - (ie. x,y): 1,0
+A: 4.0,5.0
+B: 2.0,3.0
+C: 1.0,0.0
+Side1: 2.8284271247461903
+Side2: 3.1622776601683795
+Side3: 5.830951894845301
+This is a real triangle
+-------------------
+Enter coordinates for point 1 - (ie. x,y): -3,4
+Enter coordinates for point 2 - (ie. x,y): 4,-29
+Enter coordinates for point 3 - (ie. x,y): -45,4
+A: -3.0,4.0
+B: 4.0,-29.0
+C: -45.0,4.0
+Side1: 33.734255586866
+Side2: 59.07622195096772
+Side3: 42.0
+This is a real triangle
