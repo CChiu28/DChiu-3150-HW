@@ -30,8 +30,14 @@ public class Main6 {
 				radius1 = cin.nextDouble();
 			else if (i==2)
 				radius2 = cin.nextDouble();
+			cin.nextLine();
 		}
 		distance = Math.sqrt(Math.pow((centerX2-centerX1),2)+Math.pow((centerY2-centerY1),2));
+		System.out.println("Center1: "+centerX1+" "+centerY1);
+		System.out.println("Center2: "+centerX2+" "+centerY2);
+		System.out.println("Radius1: "+radius1);
+		System.out.println("radius2: "+radius2);
+		System.out.println("Distance: "+distance);
 		if (radius1==(distance/2)&&radius2==(distance/2))
 			System.out.println("The circles are touching");
 		else if (distance>(radius1+radius2))
