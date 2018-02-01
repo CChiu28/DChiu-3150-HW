@@ -10,9 +10,9 @@ public class Main6 {
 		double centerX2=0, centerY2=0;
 		double radius1=0, radius2=0;
 		double distance=0;
-		System.out.print("Please enter the center coordinates for the first circle (ie. x,y): ");
-		userInput = cin.nextLine();
 		for (int i=1; i<=2; i++) {
+			System.out.print("Please enter the center coordinates for circle "+i+" (ie. x,y): ");
+			userInput = cin.nextLine();
 			while (!userInput.matches("(-?)(\\d+)(,{1})(-?)(\\d+)")) {
 				System.out.println("Please enter a valid set of coordinates (ie. x,y):");
 				userInput = cin.nextLine();
@@ -34,11 +34,12 @@ public class Main6 {
 		distance = Math.sqrt(Math.pow((centerX2-centerX1),2)+Math.pow((centerY2-centerY1),2));
 		if (radius1==(distance/2)&&radius2==(distance/2))
 			System.out.println("The circles are touching");
-		else if (radius1<(distance/2))&&radius2<(distance/2))
+		else if (distance>(radius1+radius2))
 			System.out.println("The circles are separated");
 		else if (radius1>=(distance+radius2)||radius2>=(distance+radius1))
 			System.out.println("One circle is within the other");
-		else if (radius1>(distance/2)||radius2>(distance/2))
+		//else if (radius1>(distance/2)||radius2>(distance/2))
+		else if (distance<(radius1+radius2))
 			System.out.println("The circles overlap");
 	}
 }
