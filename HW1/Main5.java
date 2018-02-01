@@ -1,8 +1,11 @@
+// I gathered information on how to check for specific input from keyboard using regular expressions
+// and how to split strings
+// from the following sites:
+// https://www.ocpsoft.org/opensource/guide-to-regular-expressions-in-java-part-1/
+// https://www.tutorialspoint.com/java/java_string_matches.htm
 import java.math.*;
 import java.util.Scanner;
 
-//https://www.ocpsoft.org/opensource/guide-to-regular-expressions-in-java-part-1/
-//	https://www.tutorialspoint.com/java/java_string_matches.htm
 public class Main5 {
   public static void main(String[] args) {
     Scanner cin = new Scanner(System.in);

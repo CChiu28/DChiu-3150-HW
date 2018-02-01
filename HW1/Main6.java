@@ -1,3 +1,7 @@
+// I gathered information on how to check for specific input from keyboard and how split strings
+// from the following sites:
+// https://www.ocpsoft.org/opensource/guide-to-regular-expressions-in-java-part-1/
+// https://www.tutorialspoint.com/java/java_string_matches.htm
 import java.util.Scanner;
 import java.math.*;
 
