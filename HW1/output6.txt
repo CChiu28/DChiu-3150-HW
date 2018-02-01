@@ -1,0 +1,35 @@
+Please enter the center coordinates for circle 1 (ie. x,y): 4,5
+Enter a radius:
+3
+Please enter the center coordinates for circle 2 (ie. x,y): 5,4
+Enter a radius:
+1
+Distance between two centers: 1.4142135623730951
+One circle is within the other
+-----------
+Please enter the center coordinates for circle 1 (ie. x,y): 1,1
+Enter a radius:
+1
+Please enter the center coordinates for circle 2 (ie. x,y): 4,4
+Enter a radius:
+2
+Distance between two centers: 4.242640687119285
+The circles are separated
+-----------
+Please enter the center coordinates for circle 1 (ie. x,y): 4,5
+Enter a radius:
+4
+Please enter the center coordinates for circle 2 (ie. x,y): 8,9
+Enter a radius:
+3
+Distance between two centers: 5.656854249492381
+The circles overlap
+-----------
+Please enter the center coordinates for circle 1 (ie. x,y): 0,0
+Enter a radius:
+1
+Please enter the center coordinates for circle 2 (ie. x,y): 0,2
+Enter a radius:
+1
+Distance between two centers: 2.0
+The circles are touching

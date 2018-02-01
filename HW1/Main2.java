@@ -11,5 +11,6 @@ public class Main2 {
 		  System.out.print("Enter a radius: ");
 	  }
 	  cin.close();
+    System.exit(0);
   }
 }

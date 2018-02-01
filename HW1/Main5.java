@@ -40,9 +40,10 @@ public class Main5 {
     System.out.println("Side1: "+side1);
     System.out.println("Side2: "+side2);
     System.out.println("Side3: "+side3);
-    if ((side1+side2)>side3)
+    if (((side1+side2)>side3)&&((side2+side3)>side1)&&((side1+side3)>side2))
     	System.out.println("This is a real triangle");
     else System.out.println("This is a fake triangle");
     cin.close();
+    System.exit(0);
   }
 }

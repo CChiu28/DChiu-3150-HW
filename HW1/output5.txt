@@ -1,0 +1,21 @@
+Enter coordinates for point 1 - (ie. x,y): 0,0
+Enter coordinates for point 2 - (ie. x,y): 0,0
+Enter coordinates for point 3 - (ie. x,y): 3,4
+A: 0.0,0.0
+B: 0.0,0.0
+C: 3.0,4.0
+Side1: 0.0
+Side2: 5.0
+Side3: 5.0
+This is a fake triangle
+-------------------
+Enter coordinates for point 1 - (ie. x,y): 5,6
+Enter coordinates for point 2 - (ie. x,y): 3,4
+Enter coordinates for point 3 - (ie. x,y): 3,2
+A: 5.0,6.0
+B: 3.0,4.0
+C: 3.0,2.0
+Side1: 2.8284271247461903
+Side2: 2.0
+Side3: 4.47213595499958
+This is a real triangle

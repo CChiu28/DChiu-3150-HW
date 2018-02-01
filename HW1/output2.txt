@@ -1,0 +1,13 @@
+Enter a radius: 3
+Area: 28.274333882308138
+Enter a radius: 5
+Area: 78.53981633974483
+Enter a radius: 10
+Area: 314.1592653589793
+Enter a radius: 3
+Area: 28.274333882308138
+Enter a radius: 0
+Area: 0.0
+Enter a radius: 4
+Area: 50.26548245743669
+Enter a radius: ^Z
