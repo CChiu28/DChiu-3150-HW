@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main3 {
   public static void main(String[] args) {
     Scanner cin = new Scanner(System.in);
-    String word;
+    String word = "";
     boolean palinCheck = true;
     System.out.print("Enter a word: ");
     word = cin.nextLine();

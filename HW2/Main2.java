@@ -5,8 +5,9 @@ public class Main2 {
     Scanner cin = new Scanner(System.in);
     int year = 0;
     boolean inputCheck;
-    String day;
-    String[] week = new String[] {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+    String day = "";
+    String[] calendar = {"","January","February","March","April","May","June","July","August","September","October","November","December"};
+    int[] days = {0,31,28,31,30,31,30,31,31,30,31,30,31};
     System.out.print("Enter a year: ");
     do {
       if (cin.hasNextInt()) {
@@ -18,10 +19,14 @@ public class Main2 {
           cin.next();
         }
     } while (!inputCheck);
+    if ((year%4)==0)
+      days[3] = 29;
     System.out.print("Enter the day the first day of January falls on: ");
-    do {
+    cin.next();
+    day = cin.nextLine();
+    while (!day.toLowerCase().matches("(monday|tuesday|wednesday|thursday|friday|saturday|sunday)")) {
+      System.out.print("Please enter a valid day: ");
       day = cin.nextLine();
-    } while (!day.contains);
-    System.out.print(day);
+    }
   }
 }
