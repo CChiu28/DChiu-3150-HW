@@ -17,11 +17,12 @@ public class Main1 {
         }
     } while (!intCheck);
     for (int row=1; row<=height; row++) {
+      System.out.printf();
       for (int j=1; j<=row; j++) {
-        System.out.printf("%"+height+"s %d","\t", j);
+        System.out.print(j);
       }
       for (int k=row-1; k>0; k--) {
-          System.out.print("\t"+k);
+          System.out.print(k+" ");
       }
       System.out.println();
     }
