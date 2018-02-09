@@ -18,11 +18,10 @@ public class Main1 {
     } while (!intCheck);
     for (int row=1; row<=height; row++) {
       for (int j=1; j<=row; j++) {
-        System.out.print(j+" ");
+        System.out.printf("%"+height+"s %d","\t", j);
       }
-      for (int k=height; k>0; k--) {
-        if (row>1)
-          System.out.print(k+" ");
+      for (int k=row-1; k>0; k--) {
+          System.out.print("\t"+k);
       }
       System.out.println();
     }
