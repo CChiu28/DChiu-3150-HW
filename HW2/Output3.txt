@@ -1,0 +1,4 @@
+Enter a word: Hannah
+hannah is a palindrome
+Enter a word: cisc3150
+cisc3150 is not a palindrome

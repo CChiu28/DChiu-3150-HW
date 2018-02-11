@@ -11,7 +11,7 @@ public class Main6 {
     String test = "";
     System.out.print("test: ");
     test = cin.nextLine();
-    Scanner delimit = new Scanner(test).useDelimiter("");
+    Scanner delimit = new Scanner(test).useDelimiter(""); //Empty delimiter to tokenize individual characters
     while (delimit.hasNext()) {
       System.out.println(delimit.next());
     }
