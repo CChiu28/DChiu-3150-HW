@@ -1,5 +1,5 @@
 public class MyString {
-  char[] charArray= new char[];
+  char[] charArray;
   public MyString(char[] chars) {
     for (int i=0; i<chars.length; i++) {
       charArray[i] = chars[i];
@@ -12,9 +12,13 @@ public class MyString {
     return charArray.length;
   }
   public MyString substring(int begin, int end) {
-
+    MyString newSub = new MyString();
+    for (int i=charArray[begin]; i<charArray[end]; i++) {
+      newSub(charArray[i]);
+    }
   }
-  public MyString toLowerCase() {}
+  public MyString toLowerCase() {
+  }
   public MyString toUpperCase() {}
   public boolean equals(MyString s) {}
   public MyString getMyString() {}
