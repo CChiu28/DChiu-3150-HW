@@ -5,7 +5,7 @@ public class MyString {
     this.charArray = chars;
   }
   public char charAt(int index) {
-    return charArray[index];
+    return this.charArray[index];
   }
   public int length() {
     return this.charArray.length;
@@ -25,7 +25,9 @@ public class MyString {
     for (int i=0; i<this.charArray.length; i++)
       this.charArray[i] = this.charArray[i].toUpperCase();
   }
-  public boolean equals(MyString s) {}
+  public boolean equals(MyString s) {
+    
+  }
   public MyString getMyString() {}
   public String toString() {}
   public static MyString valueOf(int i) {}
