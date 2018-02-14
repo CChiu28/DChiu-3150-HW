@@ -1,6 +1,6 @@
-public class MyString {
-  char[] charArray;
-  int index=0;
+final class MyString {
+  private char[] charArray;
+  // int index=0;
   public MyString(char[] chars) {
     this.charArray = chars;
   }
@@ -19,16 +19,17 @@ public class MyString {
   }
   public MyString toLowerCase() {
     for (int i=0; i<this.charArray.length; i++)
-      this.charArray[i] = this.charArray[i].toLowerCase();
+      Character.toLowerCase(this.charArray[i]);
+    return MyString(this.charArray);
   }
   public MyString toUpperCase() {
     for (int i=0; i<this.charArray.length; i++)
-      this.charArray[i] = this.charArray[i].toUpperCase();
+      Character.toUpperCase(this.charArray[i]);
   }
   public boolean equals(MyString s) {
     if (s.length()==this.charArray.length) {
       for (int i=0; i<s.length(); i++) {
-        if (s.charAt[i]!=this.charArray[i])
+        if (s.charAt(i)!=this.charArray[i])
           return false;
       }
       return true;
