@@ -18,8 +18,13 @@ public class MyString {
     return MyString(temp);
   }
   public MyString toLowerCase() {
+    for (int i=0; i<this.charArray.length; i++)
+      this.charArray[i] = this.charArray[i].toLowerCase();
   }
-  public MyString toUpperCase() {}
+  public MyString toUpperCase() {
+    for (int i=0; i<this.charArray.length; i++)
+      this.charArray[i] = this.charArray[i].toUpperCase();
+  }
   public boolean equals(MyString s) {}
   public MyString getMyString() {}
   public String toString() {}
