@@ -26,7 +26,13 @@ public class MyString {
       this.charArray[i] = this.charArray[i].toUpperCase();
   }
   public boolean equals(MyString s) {
-    
+    if (s.length()==this.charArray.length) {
+      for (int i=0; i<s.length(); i++) {
+        if (s.charAt[i]!=this.charArray[i])
+          return false;
+      }
+      return true;
+    } else return false;
   }
   public MyString getMyString() {}
   public String toString() {}
