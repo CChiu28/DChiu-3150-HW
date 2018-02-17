@@ -36,14 +36,14 @@ final class MyString {
     return new MyString(temp);
   }
 
-  public boolean equals(MyString s) {
+  public int compareTo(MyString s) {
     if (s.length()==this.charArray.length) {
       for (int i=0; i<s.length(); i++) {
         if (s.charAt(i)!=this.charArray[i])
-          return false;
+          return 1;
       }
-      return true;
-    } else return false;
+      return 0;
+    } else return 1;
   }
 
   public MyString getMyString() {
@@ -57,7 +57,8 @@ final class MyString {
   }
 
   public static MyString valueOf(int i) {
-    
-    return new MyString(i);
+    char[] temp = new char[1];
+    temp[0] = (char) i;
+    return new MyString(temp);
   }
 }
