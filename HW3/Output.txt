@@ -1,0 +1,9 @@
+HelloString consists of: Hello
+Character at 4th index is: o
+Length of HelloString is: 5
+Substring of HelloString at 0th and 3rd indices is: Hell
+This is all lowercase: upperlower
+This is all uppercase: UPPERLOWER
+Comparing Hello and hello results in 32
+This is a string: Hello
+The value of int 234 in MyString is 234
