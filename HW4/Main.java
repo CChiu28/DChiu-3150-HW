@@ -3,26 +3,37 @@ public class Main {
     char[][] test = { 
       {'a','b'},
       {'c','d'},
-      {'e','f'}};
-    // int check1 = 0;
-    // int check2 = 0;
-    int check3 = 0;
-    for (int i=0; i<test.length; i++) {
-      for (int j=1; j<test[0].length; j++) {
-        for (int l=0; l<test[0].length; l++) {
-          System.out.print(test[i][0]+" "+test[j][0]);
-          if (check3==0) {
-            System.out.print(" "+test[j][check3]);
-            check3++;
-          } else if (check3==1) {
-            System.out.print(" "+test[j][check3]);
-            check3 = 0;
-          }
+      {'e','f','g'}};
+    int[] counter = new int[test.length];
+    int combo = 0;
+    int totalCombos = 1;
+    int tick = 0;
+    for (int i=0; i<test.length; i++)
+      totalCombos *= test[i].length;
+    while (combo<totalCombos) {
+      for (int i=0; i<test.length; i++) {
+        System.out.print(test[i][counter[i]]+" ");
+        if (i==test.length-1) {
+          if (counter[i]==test[i].length-1&&i>=1) {
+            counter[i] = 0;
+            counter[i-1] += 1;
+          } else counter[i] += 1;
         }
       }
       System.out.println();
+      combo++;
     }
-    System.out.println("length of row: "+test.length);
-    System.out.println("length of col: "+test[0].length);
+    // // int check1 = 0;
+    // // int check2 = 0;
+    // int check3 = 0;
+    // // int numCombo = 1;
+    // // for (int i=0; i<test.length; i++)
+    // //   numCombo *= test[i].length;
+    // for (int i=0; i<test[i].length; i++) {
+    //   for (int j=0; j<test.length; j++)
+    //   System.out.println();
+    // }
+    // System.out.println("length of row: "+test.length);
+    // System.out.println("length of col: "+test[0].length);
   }
 }
