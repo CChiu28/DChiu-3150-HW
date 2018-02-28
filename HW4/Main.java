@@ -9,7 +9,6 @@ public class Main {
     System.out.print("Enter how long you want your array to be: ");
     char[][] charArray = new char[cin.nextInt()][];
     int[] counter = new int[charArray.length]; //Counter to check which index each row is at
-    // int[] size = new int[charArray.length]; //Keeps track of the size of each row
     for (int i=0; i<charArray.length; i++) { //Loop to determine row and characters for array
       System.out.print("Enter length of row: ");
       charArray[i] = new char[cin.nextInt()]; //Determine length of each row
@@ -26,17 +25,16 @@ public class Main {
       System.out.println();
     }
     System.out.println("------");
-    for (int i=0; i<charArray.length; i++) { //Finds total number of combos and keeps track of row length
+    for (int i=0; i<charArray.length; i++) { //Finds total number of combos
       totalCombos *= charArray[i].length; //Multiply for total possible combos
-      // size[i] = charArray[i].length; //Track length of each row
     }
     char[][] result = new char[totalCombos][charArray.length]; //Array to store combos
     while (combo<totalCombos) { //Ensures combos do not exceed max possible combos
-      for (int i=0; i<charArray.length; i++) { //Add new element to current combo according to counter position
+      for (int i=0; i<charArray.length; i++) { //Add new element from each row to current combo according to counter position
         result[combo][i] = charArray[i][counter[i]];
       }
       for (int j=charArray.length-1; j>=0; j--) { //Increment counters accordingly starting at last row
-        if (counter[j]+1<charArray[j].length) { //Condition to check if counter increment will go over length of row
+        if (counter[j]+1<charArray[j].length) { //Condition to check if counter increment will exceed length of row
           counter[j]++;
           break; //Break out of loop if counter incremented
         }

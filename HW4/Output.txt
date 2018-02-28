@@ -1,0 +1,33 @@
+Enter how long you want your array to be: 4
+Enter length of row: 3
+Enter characters for this row: abc
+Enter length of row: 1
+Enter characters for this row: d
+Enter length of row: 2
+Enter characters for this row: ef
+Enter length of row: 3
+Enter characters for this row: ghi
+Array:
+a b c
+d
+e f
+g h i
+------
+a d e g
+a d e h
+a d e i
+a d f g
+a d f h
+a d f i
+b d e g
+b d e h
+b d e i
+b d f g
+b d f h
+b d f i
+c d e g
+c d e h
+c d e i
+c d f g
+c d f h
+c d f i
