@@ -1,0 +1,9 @@
+Radius: 3
+Area of Sq: 9
+Area of Circle: 7.0685834705770345
+Ratio: 0.7853981633974483
+Hits in circle: 3141601407
+Total hits: 4000000000
+Hits in circle/Total hits: 0.78540035175
+PI: 3.141601407
+187470

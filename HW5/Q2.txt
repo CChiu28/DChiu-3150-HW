@@ -2,6 +2,16 @@ A. Woof, woof, woof, woof!
 
 B. I'm a cat, go away!
 
-C. !!!
+C. Compile error
 
-D. 
+D. Pet+hashcode
+
+E. !!!
+
+F. Come here, kitty?... Don't waste my time.
+
+G. Compile error
+
+H. four
+
+I. Compile error
