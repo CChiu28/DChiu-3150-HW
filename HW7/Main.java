@@ -8,3 +8,15 @@ public class Main {
         System.out.print(input);
     }
 }
+
+class LookAtMrAlgebraOverHereException extends IllegalArgumentException {
+    public LookAtMrAlgebraOverHereException() {}
+}
+
+class IllegalOperationException extends IllegalArgumentException {
+    public IllegalOperationException() {}
+}
+
+class UserIsADumbassException extends IllegalArgumentException {
+    public UserIsADumbassException() {}
+}
