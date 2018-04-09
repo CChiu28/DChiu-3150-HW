@@ -12,8 +12,10 @@ public class Main {
                 if (!checkDigit(args[i])&&!checkOperator(args[i])) {
                     System.out.println(checkDigit(args[i]));
                     throw new LookAtMrAlgebraOverHereException("Enter a real number kthx");
-                } else if (i>0&&checkDigit(args[i])&&checkDigit(args[i-1]))
+                } else if (i>0&&checkDigit(args[i])&&checkDigit(args[i-1])) {
                     throw new LookAtMrAlgebraOverHereException("bruh you entered 2 numbers in a row");
+                } else if (i>0&&checkOperator(args[i])&&checkOperator(args[i-1]))
+                    throw new LookAtMrAlgebraOverHereException("bruh you entered 2 operators in a row");
                 input[i] = args[i];
             }
         } catch(LookAtMrAlgebraOverHereException e) {
@@ -32,41 +34,47 @@ public class Main {
         if (op.equals("*")) {
             return x*y;
         } else if (op.equals("/")) {
-            return x/y;
+            if (y==0)
+                throw new ArithmeticException("You destroyed the universe by dividing by 0");
+            else return x/y;
         } else if (op.equals("+")) {
             return x+y;
         } else if (op.equals("-")) {
             return x-y;
+        } else if (op.equals("%")) {
+            return x%y;
         } else throw new IllegalOperationException();
     }
 
     public static double postfix(String[] s) throws RuntimeException {
-        Stack<String> operators = new Stack<>();
-        StringBuffer operands = new StringBuffer();
+        Stack<Character> operators = new Stack<>();
+        StringBuffer exp = new StringBuffer();
+        char paren;
         double result = 0;
         for (int i=0; i<s.length; i++) {
-            // if (checkDigit(s[i])) {
-            //     operands.append(s[i]);
-            // } else if (checkOperator(s[i])) {
-            //     operators.push(s[i]);
-            // }
-            if (s[i].equals("(")) {
-                for (int j=i; j<s.length; j++) {
-                    if (s[j].equals(")")) {
-                        String[] temp = new String[j-i];
-                        temp = Arrays.copyOfRange(s, i+1, j);
-                        System.out.println(Arrays.toString(temp));
-                        result = postfix(temp);
-                    }
-                }
-            }
-            if (s[i].matches("{1}[%()*/+-]")) {
-                result = calc(s[i-1],s[i],s[i+1]);
+            paren = s[i].charAt(0);
+            if (checkDigit(s[i])) {
+                exp.append(s[i]+" ");
+                //System.out.println(s[i]+" is good");
+            } else if (paren=='(') {
+                operators.push(s[i].charAt(0));
+                //System.out.println(paren+" found");
+            } else if (paren==')') {
+                //System.out.println(paren+" found");
+                while (operators.peek()!='(')
+                    exp.append(operators.pop()+" ");
+                operators.pop();
+            } else {
+                while (!operators.empty()&&(operatorPriority(operators.peek())>operatorPriority(paren)))
+                    exp.append(operators.pop()+" ");
+                operators.push(paren);
             }
         }
-        System.out.println("digs "+operands);
-        System.out.println("operators "+operators.toString());
-        System.out.println(result);
+        // System.out.println("operators "+operators.toString());
+        while (!operators.empty())
+            exp.append(operators.pop()+" ");
+        System.out.println("digs "+exp.toString());
+        // System.out.println(result);
         return result;
     }
 
@@ -80,9 +88,17 @@ public class Main {
     }
 
     public static boolean checkOperator(String s) {
-        if (s.matches("{1}[%()*/+-]"))
+        if (s.length()==1&&s.matches("^[%*/+-]"))
             return true;
         else return false;
+    }
+
+    public static int operatorPriority(char op) {
+        if (op=='+'||op=='-')
+            return 1;
+        else if (op=='*'||op=='/'||op=='%')
+            return 2;
+        else return 0;
     }
 }
 
