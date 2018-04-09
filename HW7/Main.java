@@ -21,21 +21,53 @@ public class Main {
         }
         System.out.println(Arrays.toString(input));
         try {
-            calc(input);
+            postfix(input);
         } catch(RuntimeException e) {}
         System.exit(1);
     }
 
-    public static void calc(String[] s) throws RuntimeException {
-        double result = 0;
+    public static double calc(String a, String op, String b) throws RuntimeException {
+        double x = Double.parseDouble(a);
+        double y = Double.parseDouble(b);
+        if (op.equals("*")) {
+            return x*y;
+        } else if (op.equals("/")) {
+            return x/y;
+        } else if (op.equals("+")) {
+            return x+y;
+        } else if (op.equals("-")) {
+            return x-y;
+        } else throw new IllegalOperationException();
     }
 
-    public static void postfix(String[] s) throws RuntimeException {
-        Stack operators = new Stack<>();
+    public static double postfix(String[] s) throws RuntimeException {
+        Stack<String> operators = new Stack<>();
         StringBuffer operands = new StringBuffer();
+        double result = 0;
         for (int i=0; i<s.length; i++) {
-            
+            // if (checkDigit(s[i])) {
+            //     operands.append(s[i]);
+            // } else if (checkOperator(s[i])) {
+            //     operators.push(s[i]);
+            // }
+            if (s[i].equals("(")) {
+                for (int j=i; j<s.length; j++) {
+                    if (s[j].equals(")")) {
+                        String[] temp = new String[j-i];
+                        temp = Arrays.copyOfRange(s, i+1, j);
+                        System.out.println(Arrays.toString(temp));
+                        result = postfix(temp);
+                    }
+                }
+            }
+            if (s[i].matches("{1}[%()*/+-]")) {
+                result = calc(s[i-1],s[i],s[i+1]);
+            }
         }
+        System.out.println("digs "+operands);
+        System.out.println("operators "+operators.toString());
+        System.out.println(result);
+        return result;
     }
 
     public static boolean checkDigit(String s) {
@@ -63,8 +95,14 @@ class LookAtMrAlgebraOverHereException extends IllegalArgumentException {
 
 class IllegalOperationException extends IllegalArgumentException {
     public IllegalOperationException() {}
+    public IllegalOperationException(String s) {
+        System.out.println(s);
+    }
 }
 
 class UserIsADumbassException extends IllegalArgumentException {
     public UserIsADumbassException() {}
+    public UserIsADumbassException(String s) {
+        System.out.println(s);
+    }
 }
