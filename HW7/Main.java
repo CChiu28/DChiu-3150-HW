@@ -9,7 +9,7 @@ public class Main {
             if (args.length==0)
                 System.out.println("Empty");
             else for (int i=0; i<args.length; i++) {
-                if (!checkDigit(args[i])&&!checkOperator(args[i])) {
+                if (args[i].matches("\\p{Alpha}")) {
                     System.out.println(checkDigit(args[i]));
                     throw new LookAtMrAlgebraOverHereException("Enter a real number kthx");
                 } else if (i>0&&checkDigit(args[i])&&checkDigit(args[i-1])) {
@@ -43,7 +43,7 @@ public class Main {
             return x-y;
         } else if (op.equals("%")) {
             return x%y;
-        } else throw new IllegalOperationException();
+        } else throw new IllegalOperationException("bro lrn2math");
     }
 
     public static double postfix(String[] s) throws RuntimeException {
