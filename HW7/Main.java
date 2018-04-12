@@ -98,12 +98,13 @@ public class Main {
     }
 
     public static boolean checkDigit(String s) {
+        boolean isDigit = true;
         for (int i=0; i<s.length(); i++) {
             if (!Character.isDigit(s.charAt(i))) {
-                return false;
+                isDigit = false;
             }
         }
-        return true;
+        return isDigit;
     }
 
     public static boolean checkOperator(String s) {
