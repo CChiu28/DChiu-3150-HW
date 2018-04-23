@@ -9,15 +9,15 @@ public class Main {
             if (args.length==0)
                 System.out.println("Empty");
             else for (int i=0; i<args.length; i++) {
-                if (args[i].matches("\\p{Alpha}")) {
-                    System.out.println(checkDigit(args[i]));
-                    throw new LookAtMrAlgebraOverHereException("Enter a real number kthx");
-                } else if (i>0&&checkDigit(args[i])&&checkDigit(args[i-1])) {
-                    throw new LookAtMrAlgebraOverHereException("bruh you entered 2 numbers in a row");
-                } else if (i>0&&checkOperator(args[i])&&checkOperator(args[i-1])) {
-                    throw new LookAtMrAlgebraOverHereException("bruh you entered 2 operators in a row");
-                } else if (i==0&&checkOperator(args[i]))
-                    throw new UserIsADumbassException("Bruh you forgot a number");
+                // if (args[i].matches("\\p{Alpha}")) {
+                //     System.out.println(checkDigit(args[i]));
+                //     throw new LookAtMrAlgebraOverHereException("Enter a real number kthx");
+                // } else if (i>0&&checkDigit(args[i])&&checkDigit(args[i-1])) {
+                //     throw new LookAtMrAlgebraOverHereException("bruh you entered 2 numbers in a row");
+                // } else if (i>0&&checkOperator(args[i])&&checkOperator(args[i-1])) {
+                //     throw new LookAtMrAlgebraOverHereException("bruh you entered 2 operators in a row");
+                // } else if (i==0&&checkOperator(args[i]))
+                //     throw new UserIsADumbassException("Bruh you forgot a number");
                 input[i] = args[i];
             }
         } catch(LookAtMrAlgebraOverHereException e) {
@@ -27,10 +27,10 @@ public class Main {
         try {
             String[] postfix = new String[postfix(input).length()];
             postfix = postfix(input).split(" ");
-            System.out.println(Arrays.toString(postfix)+" "+postfix.length);
+            System.out.println(Arrays.toString(postfix));
             System.out.println(calc(postfix));
         } catch(RuntimeException e) {
-            System.out.println("bruh..."+e);
+            System.out.println("bruh...");
             e.printStackTrace();
         }
         System.exit(1);
@@ -73,6 +73,8 @@ public class Main {
         for (int i=0; i<s.length; i++) {
             paren = s[i].charAt(0);
             if (checkDigit(s[i])) {
+                if (i>0&&checkDigit(s[i-1]))
+                    throw new LookAtMrAlgebraOverHereException("bruh multiple numbers in a row");
                 exp.append(s[i]+" ");
                 //System.out.println(s[i]+" is good");
             } else if (paren=='(') {
@@ -82,7 +84,9 @@ public class Main {
                 //System.out.println(paren+" found");
                 while (operators.peek()!='(')
                     exp.append(operators.pop()+" ");
-                operators.pop();
+                if (operators.peek()!='(')
+                    throw new IllegalOperationException("bruh...double open parens?");
+                else operators.pop();
             } else {
                 while (!operators.empty()&&(operatorPriority(operators.peek())>operatorPriority(paren)))
                     exp.append(operators.pop()+" ");
@@ -92,7 +96,7 @@ public class Main {
         // System.out.println("operators "+operators.toString());
         while (!operators.empty())
             exp.append(operators.pop()+" ");
-        System.out.println("digs "+exp.toString());
+        // System.out.println("digs "+exp.toString());
         // System.out.println(result);
         return exp.toString();
     }
