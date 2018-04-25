@@ -3,64 +3,47 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) {
-        String[] input = new String[args.length];
-        // char[] cArray = args[].toCharArray();
+        String[] input = new String[args.length]; // New String array for args values
         try {
-            if (args.length==0)
-                System.out.println("Empty");
-            else for (int i=0; i<args.length; i++) {
-                // if (args[i].matches("\\p{Alpha}")) {
-                //     System.out.println(checkDigit(args[i]));
-                //     throw new AlgebraFailException("Enter a real number kthx");
-                // } else if (i>0&&checkDigit(args[i])&&checkDigit(args[i-1])) {
-                //     throw new AlgebraFailException("bruh you entered 2 numbers in a row");
-                // } else if (i>0&&checkOperator(args[i])&&checkOperator(args[i-1])) {
-                //     throw new AlgebraFailException("bruh you entered 2 operators in a row");
-                // } else if (i==0&&checkOperator(args[i]))
-                //     throw new UserIsADumbassException("Bruh you forgot a number");
-                input[i] = args[i];
+            if (args.length<3)
+                throw new UserIsADumbassException("lolemptyinputlikeyourbrain");
+            else {
+                input = Arrays.copyOf(args, args.length); // Copy args array into input array
+                // System.out.println("Infix "+Arrays.toString(input));
+                String[] postfix = new String[in2post(input).length()]; // New postfix array of length of returning postfix expression
+                postfix = in2post(input).split(" "); // Populate postfix array by splitting returning expression's values
+                // System.out.println("Postfix "+Arrays.toString(postfix));
+                System.out.println(calc(postfix)); // Calculate expression and print
             }
-        } catch(AlgebraFailException e) {
-            e.printStackTrace();
-            System.exit(0);
-        }
-        System.out.println(Arrays.toString(input));
-        try {
-            String[] postfix = new String[postfix(input).length()];
-            postfix = postfix(input).split(" ");
-            System.out.println(Arrays.toString(postfix));
-            System.out.println(calc(postfix));
         } catch(UserIsADumbassException e) {
-            System.out.println("At least try to math correctly");
-            // e.printStackTrace();
             System.exit(0);
         } catch(QuitMashingOnYourKeyboardException e) {
-            System.out.println("bruh...");
-            // e.printStackTrace();
             System.exit(0);
         } catch(AlgebraFailException e) {
-            // e.printStackTrace();
+            System.exit(0);
+        } catch(ArithmeticException e) {
+            System.out.println("You destroyed the universe by dividing by 0");
             System.exit(0);
         }
         System.exit(1);
     }
 
-    public static double calc(String[] exp) {
-        double x = 0;
-        double y = 0;
-        double result = 0;
-        Stack<String> calc = new Stack<>();
-        for (String s:exp) {
-            if (checkDigit(s))
+    // Calculation function
+    public static double calc(String[] exp) throws ArithmeticException {
+        double x = 0; // First value
+        double y = 0; // Second value
+        Stack<String> calc = new Stack<>(); // Stack for taking expression
+        for (String s:exp) { // Enhanced for loop for quicker value copying
+            if (checkDigit(s)) // If valid digit, push to stack
                 calc.push(s);
-            else {
-                y = Double.parseDouble(calc.pop());
-                x = Double.parseDouble(calc.pop());
-                if (s.equals("*")||s.equals("x")) {
-                    calc.push(Double.toString(x*y));
+            else { // else pop digits and calculate
+                y = Double.parseDouble(calc.pop()); // Take second value
+                x = Double.parseDouble(calc.pop()); // Take first value
+                if (s.equals("*")||s.equals("x")) { // Terminal can break when taking asterisks so replace with 'x'
+                    calc.push(Double.toString(x*y)); // Push current calculated result to stack
                 } else if (s.equals("/")) {
-                    if (y==0)
-                        throw new ArithmeticException("You destroyed the universe by dividing by 0");
+                    if (y==0) // UNIVERSE IMPLOSION
+                        throw new ArithmeticException();
                     else calc.push(Double.toString(x/y));
                 } else if (s.equals("+")) {
                     calc.push(Double.toString(x+y));
@@ -68,70 +51,67 @@ public class Main {
                     calc.push(Double.toString(x-y));
                 } else if (s.equals("%")) {
                     calc.push(Double.toString(x%y));
-                } else throw new QuitMashingOnYourKeyboardException("bro lrn2math");
+                } else throw new QuitMashingOnYourKeyboardException("bro lrn2math"); // Throw if operators are invalid
             }
         }
         return Double.parseDouble(calc.pop());
     }
 
-    public static String postfix(String[] s) throws RuntimeException {
-        Stack<Character> operators = new Stack<>();
-        StringBuffer exp = new StringBuffer();
-        char paren;
-        double result = 0;
-        if (s.length==0||s.length==1||s.length==2)
-            throw new UserIsADumbassException();
-        else if (checkOperator(s[0]))
+    public static String in2post(String[] s) {
+        Stack<Character> operators = new Stack<>(); // Stack for operators
+        StringBuffer exp = new StringBuffer(); // StringBuffer for postfix expression
+        char paren; // Check for parenthesis
+        if (checkOperator(s[0])) // If first input is operator, throw exception
             throw new AlgebraFailException("bruh operators before numbers? wtf?");
-        else for (int i=0; i<s.length; i++) {
-            paren = s[i].charAt(0);
-            if (checkDigit(s[i])) {
-                if (i<s.length-1&&checkDigit(s[i+1]))
+        else for (int i=0; i<s.length; i++) { // Begin looping string array for expression
+            paren = s[i].charAt(0); // Checking for parenthesis later...
+            if (checkDigit(s[i])) { // If ith value is a digit,
+                if (i<s.length-1&&checkDigit(s[i+1])) // check the i+1 for digit, throw exception accordingly
                     throw new AlgebraFailException("bruh multiple numbers in a row");
-                else exp.append(s[i]+" ");
-                //System.out.println(s[i]+" is good");
-            } else if (paren=='(') {
-                if (i<s.length-1&&checkOperator(s[i+1]))
+                else exp.append(s[i]+" "); // else append valid digit to stringbuffer
+            } else if (paren=='(') { // If ith value is open parenthesis,
+                if (i<s.length-1&&checkOperator(s[i+1])) // Check next input for operator, throw exception accordingly
                     throw new AlgebraFailException("operator after open paren");
-                operators.push(s[i].charAt(0));
-                //System.out.println(paren+" found");
-            } else if (paren==')') {
-                //System.out.println(paren+" found");
-                while (operators.peek()!='(')
+                else if (i<s.length-1&&s[i+1].charAt(0)==')') // and check for immediate closing parenthesis, throw accordingly
+                    throw new QuitMashingOnYourKeyboardException("Empty parenthesis bruh");
+                operators.push(s[i].charAt(0)); // else push the parenthesis to stack
+            } else if (paren==')') { // If ith value is closing parenthesis
+                while (operators.peek()!='(') // Add all operators to stringbuffer until open parenthesis
                     exp.append(operators.pop()+" ");
-                if (operators.peek()!='(')
-                    throw new QuitMashingOnYourKeyboardException("bruh...double open parens?");
-                else operators.pop();
-            } else {
-                while (!operators.empty()&&(operatorPriority(operators.peek())>operatorPriority(paren)))
-                    exp.append(operators.pop()+" ");
-                operators.push(paren);
+                operators.pop(); // Get rid of open parenthesis on stack
+            } else { // If it's an operator...
+                while (!operators.empty()&&(operatorPriority(operators.peek())>operatorPriority(paren))) // Check for existing operators and PEMDAS order
+                    exp.append(operators.pop()+" "); // Add higher operator to stringbuffer if valid
+                operators.push(paren); // and then push current operator to stack
             }
         }
-        // System.out.println("operators "+operators.toString());
-        while (!operators.empty())
+        while (!operators.empty()) // At end of expression, pop all remaining operators
             exp.append(operators.pop()+" ");
-        // System.out.println("digs "+exp.toString());
-        // System.out.println(result);
         return exp.toString();
     }
 
+    // Function to check if valid digit
     public static boolean checkDigit(String s) {
-        boolean isDigit = true;
-        for (int i=0; i<s.length(); i++) {
-            if (!Character.isDigit(s.charAt(i))) {
-                isDigit = false;
+        try {
+            Integer.parseInt(s); // Checks for valid integer
+        } catch(NumberFormatException e) {
+            try {
+                Double.parseDouble(s); // Checks for valid double if not integer
+            } catch(NumberFormatException f) {
+                return false; // False if both fail
             }
         }
-        return isDigit;
+        return true;
     }
 
+    // Checks for valid operators via regex
     public static boolean checkOperator(String s) {
         if (s.length()==1&&s.matches("^[%*x/+-]"))
             return true;
         else return false;
     }
 
+    // Checks for PEMDAS priority
     public static int operatorPriority(char op) {
         if (op=='+'||op=='-')
             return 1;
