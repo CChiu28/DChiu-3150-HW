@@ -1,5 +1,4 @@
 import java.util.*;
-import java.io.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -29,7 +28,7 @@ public class Main {
     }
 
     // Calculation function
-    public static double calc(String[] exp) throws ArithmeticException {
+    public static double calc(String[] exp) {
         double x = 0; // First value
         double y = 0; // Second value
         Stack<String> calc = new Stack<>(); // Stack for taking expression

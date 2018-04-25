@@ -1,0 +1,8 @@
+Q2:
+    With the release of Java 7, being able to specify the exceptions thrown in the try/catch block allows the extended exception
+    class to take on the type of the exception being thrown in the try block. This allows for the caught exception to be rethrown.
+    https://stackoverflow.com/questions/19913834/rethrowing-an-exception-why-does-the-method-compile-without-a-throws-clause
+Q3:
+    Calling an interface's default method through a class's method is necessary to avoid collisions between default methods
+    of the same name when inheriting from multiple interfaces.
+    https://zeroturnaround.com/rebellabs/java-8-explained-default-methods/
