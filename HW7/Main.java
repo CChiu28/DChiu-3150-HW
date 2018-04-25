@@ -21,7 +21,8 @@ public class Main {
                 input[i] = args[i];
             }
         } catch(AlgebraFailException e) {
-            System.exit(1);
+            e.printStackTrace();
+            System.exit(0);
         }
         System.out.println(Arrays.toString(input));
         try {
@@ -29,9 +30,17 @@ public class Main {
             postfix = postfix(input).split(" ");
             System.out.println(Arrays.toString(postfix));
             System.out.println(calc(postfix));
-        } catch(RuntimeException e) {
+        } catch(UserIsADumbassException e) {
+            System.out.println("At least try to math correctly");
+            // e.printStackTrace();
+            System.exit(0);
+        } catch(QuitMashingOnYourKeyboardException e) {
             System.out.println("bruh...");
-            e.printStackTrace();
+            // e.printStackTrace();
+            System.exit(0);
+        } catch(AlgebraFailException e) {
+            // e.printStackTrace();
+            System.exit(0);
         }
         System.exit(1);
     }
@@ -47,7 +56,7 @@ public class Main {
             else {
                 y = Double.parseDouble(calc.pop());
                 x = Double.parseDouble(calc.pop());
-                if (s.equals("*")) {
+                if (s.equals("*")||s.equals("x")) {
                     calc.push(Double.toString(x*y));
                 } else if (s.equals("/")) {
                     if (y==0)
@@ -70,14 +79,20 @@ public class Main {
         StringBuffer exp = new StringBuffer();
         char paren;
         double result = 0;
-        for (int i=0; i<s.length; i++) {
+        if (s.length==0||s.length==1||s.length==2)
+            throw new UserIsADumbassException();
+        else if (checkOperator(s[0]))
+            throw new AlgebraFailException("bruh operators before numbers? wtf?");
+        else for (int i=0; i<s.length; i++) {
             paren = s[i].charAt(0);
             if (checkDigit(s[i])) {
-                if (i>0&&checkDigit(s[i-1]))
+                if (i<s.length-1&&checkDigit(s[i+1]))
                     throw new AlgebraFailException("bruh multiple numbers in a row");
-                exp.append(s[i]+" ");
+                else exp.append(s[i]+" ");
                 //System.out.println(s[i]+" is good");
             } else if (paren=='(') {
+                if (i<s.length-1&&checkOperator(s[i+1]))
+                    throw new AlgebraFailException("operator after open paren");
                 operators.push(s[i].charAt(0));
                 //System.out.println(paren+" found");
             } else if (paren==')') {
@@ -112,7 +127,7 @@ public class Main {
     }
 
     public static boolean checkOperator(String s) {
-        if (s.length()==1&&s.matches("^[%*/+-]"))
+        if (s.length()==1&&s.matches("^[%*x/+-]"))
             return true;
         else return false;
     }
@@ -120,7 +135,7 @@ public class Main {
     public static int operatorPriority(char op) {
         if (op=='+'||op=='-')
             return 1;
-        else if (op=='*'||op=='/'||op=='%')
+        else if (op=='*'||op=='/'||op=='%'||op=='x')
             return 2;
         else return 0;
     }
