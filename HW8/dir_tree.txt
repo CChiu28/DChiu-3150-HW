@@ -1,0 +1,34 @@
+f:\whackamole:
+|--2ND_VER_PROJECT_IN_BRANCH_FOLDER.txt
+|--branches/
+   |--balloon.jpg
+   |--branches.zip
+   |--clickDetection.html
+   |--graphic/
+      |--all.jpg
+      |--fence.png
+      |--hammer.png
+      |--hammerOnClick.png
+      |--level2.png
+      |--level3.jpg
+      |--professor.png
+   |--test.css
+   |--test.js
+   |--test2.html
+|--Project/
+   |--graphic/
+      |--all.jpg
+      |--fence.png
+      |--hammer.png
+      |--hammerOnClick.png
+      |--level2.png
+      |--level3.jpg
+      |--professor.png
+   |--index.html
+   |--Project.zip
+   |--sample.txt
+   |--whackamole.js
+|--RevisionHistory.txt
+|--tags/
+|--trunk/
+|--whackamole.docx
