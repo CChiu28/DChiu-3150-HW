@@ -7,7 +7,7 @@ public class Main {
         if (!root.exists()) { // If invalid filepath
             throw new IllegalArgumentException("No dir here");
         } else {
-            tree.append(root.getPath() + ":\n"); // Start with inputted filepath
+            tree.append(root.getPath()+":\n"); // Start with inputted filepath
             getDir(root, tree, 0); // Call method to construct tree
             try {
                 BufferedWriter write = new BufferedWriter(new FileWriter("dir_tree.txt")); // Create new txt file for output
