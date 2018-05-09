@@ -1,0 +1,8 @@
+1. Your Object.java was broken. Compiles just fine on another machine.
+
+2. The wait() releases the lock on the thread calling it. Since there is no notify()/notifyAll(),
+    the threads remain sleeping and do not acquire the lock to continue execution.
+    Source: You
+
+3. Add synchronized to both the producer() and consumer() methods
+source: https://javarevisited.blogspot.com/2011/05/wait-notify-and-notifyall-in-java.html
