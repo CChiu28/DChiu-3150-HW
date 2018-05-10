@@ -43,7 +43,7 @@ class AlphabetizeMeCaptain {
                     }
                 }
                 if (c<='z') { // Ensures char c does not exceed 'z' in each thread
-                    System.out.println(Thread.currentThread().getName()+": "+c); // Print character
+                    System.out.println(Thread.currentThread().getName()+": "+c); // Print curren thread+character
                     c++; // increment character
                 }
                 n++; // Increment the value to determine next thread wait() call
