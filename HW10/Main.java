@@ -42,10 +42,16 @@ class AlphabetizeMeCaptain {
                         e.printStackTrace();
                     }
                 }
-                System.out.println(Thread.currentThread().getName()+": "+c); // Print character
-                c++; // increment character
+                if (c<='z') { // Ensures char c does not exceed 'z' in each thread
+                    System.out.println(Thread.currentThread().getName()+": "+c); // Print character
+                    c++; // increment character
+                }
                 n++; // Increment the value to determine next thread wait() call
-                this.notifyAll(); // Party time for the other threads
+                try {
+                    this.notifyAll(); // Party time for the other threads
+                } catch(Throwable e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
